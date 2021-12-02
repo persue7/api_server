@@ -15,7 +15,7 @@ const userSchema = require('../schema/user')
 router.post('/reguser', expressJoi(userSchema), user_handler.regUser)
 
 // 登录
-router.post('/login', user_handler.login)
+router.post('/login', expressJoi(userSchema), user_handler.login)
 
 // 将路由对象共享出去
 module.exports = router
