@@ -13,7 +13,7 @@ app.use(cors())
 
 //配置解析表单数据的中间件 注意：这个中间件，只能解析 application/x-www-form-urlencoded 格式的表单数据
 app.use(express.urlencoded({ extended: false }))
-
+app.use('/uploads', express.static('./uploads'))
 
 
 // 一定要在路由之前，封装 res.cc 函数
@@ -47,6 +47,10 @@ app.use('/my', userinfo)
 // 导入并使用文章分类的路由模块
 const artCateRouter = require('./router/artcate')
 app.use('/my/article', artCateRouter)
+
+// 导入并使用文章的路由模块
+const articleRouter = require('./router/article')
+app.use('/my/article', articleRouter)
 
 // 定义错误级别的中间件
 app.use((err, req, res, next) => {
